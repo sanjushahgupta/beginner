@@ -1,36 +1,44 @@
 package basic
 
-import "fmt"
+// func Opp(number1 int, number2 int) int {
+// 	result := 0
+// 	var operate string
 
-var sum, a, b int
+// 	switch operate {
+// 	case "+":
+// 		result = number1 + number2
+// 		break
+// 	case "-":
+// 		result = number1 - number2
+// 	case "*":
+// 		result = number1 * number2
+// 	case "/":
+// 		result = number1 / number2
+// 	case "%":
+// 		result = number1 % number2
+// 	default:
+// 		fmt.Println("Invalid Operation")
+// 	}
+// 	fmt.Printf("%d %s %d = %d", number1, operate, number2, result)
+// 	return 0
+// }
 
-func Cal(number1, number2 int) int {
-	var addition, subtraction, multiplication, Mod, Division int
-	addition = number1 + number2
+func Add(x int, y int) int {
 
-	subtraction = number1 - number2
-
-	multiplication = number1 * number2
-
-	Mod = number1 / number2
-
-	Division = number1 % number2
-
-	fmt.Printf("%d + %d = %d", number1, number2, addition)
-	fmt.Println()
-	fmt.Printf("%d - %d = %d", number1, number2, subtraction)
-	fmt.Println()
-	fmt.Printf("%d * %d = %d", number1, number2, multiplication)
-	fmt.Println()
-	fmt.Printf("%d modulos %d  = %d", number1, number2, Mod)
-	fmt.Println()
-	fmt.Printf("%d / %d = %d", number1, number2, Division)
-	fmt.Println()
-	return 0
+	return x + y
 }
 
-//func add(a, b int) int {
-//sum = a + b
-//fmt.Printf("%d + %d = %d", a, b, sum)
-//return 0
-//}
+func Sub(x int, y int) int {
+
+	return x - y
+}
+
+func Mul(x int, y int) int {
+
+	return x * y
+}
+
+func Div(x int, y int) int {
+
+	return x / y
+}

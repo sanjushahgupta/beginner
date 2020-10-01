@@ -1,0 +1,11 @@
+[x] git add
+[x] git commit
+[x] git push
+[ ] git branch
+[ ] git merge
+[ ] git checkout
+
+// job mvc
+- create job
+- list job
+- update job

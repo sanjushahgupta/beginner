@@ -3,28 +3,60 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 
-	"html/template"
-
-	b "github.com/sanjushahgupta/beginner/basic"
+	"github.com/julienschmidt/httprouter"
+	"github.com/sanjushahgupta/beginner/basic"
 )
 
-func show(w http.ResponseWriter, r *http.Request) {
-	if r.Method == "GET" {
-		t, _ := template.ParseFiles("index.html")
-		t.Execute(w, nil)
-	}
+func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	fmt.Fprint(w, "Welcome to calculator!\n")
+}
+
+func Sum(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	x, _ := strconv.Atoi(ps.ByName("x"))
+
+	y, _ := strconv.Atoi(ps.ByName("y"))
+
+	plus := strconv.Itoa(basic.Add(x, y))
+	w.Write([]byte(plus))
+}
+func Subt(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	x, _ := strconv.Atoi(ps.ByName("x"))
+
+	y, _ := strconv.Atoi(ps.ByName("y"))
+	minus := strconv.Itoa(basic.Sub(x, y))
+	w.Write([]byte(minus))
+}
+
+func Multi(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	x, _ := strconv.Atoi(ps.ByName("x"))
+
+	y, _ := strconv.Atoi(ps.ByName("y"))
+
+	multiply := strconv.Itoa(basic.Mul(x, y))
+
+	w.Write([]byte(multiply))
+}
+func Divd(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	x, _ := strconv.Atoi(ps.ByName("x"))
+
+	y, _ := strconv.Atoi(ps.ByName("y"))
+	divide := strconv.Itoa(basic.Div(x, y))
+
+	w.Write([]byte(divide))
 }
 
 func main() {
-	http.HandleFunc("/show", show)
+	router := httprouter.New()
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "hello world")
-		b.Cal(3, 6)
-		//	b.add(2, 5)
-	})
+	router.GET("/:x/plus/:y", Sum)
 
-	http.ListenAndServe(":8080", nil)
+	router.GET("/:x/minus/:y", Subt)
+	router.GET("/:x/multiply/:y", Multi)
+	router.GET("/:x/divide/:y", Divd)
 
+	router.GET("/", Index)
+
+	http.ListenAndServe(":8080", router)
 }

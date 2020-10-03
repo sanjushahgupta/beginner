@@ -2,9 +2,7 @@ package storage
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
-	"os"
 )
 
 type Profile struct {
@@ -13,16 +11,7 @@ type Profile struct {
 	Email     string `json:"email"`
 }
 
-func CreateUser(p Profile) (string, error) {
-	fn := fmt.Sprintf("%s_%s.json", p.FirstName, p.LastName)
-	_, err := os.Stat(fn)
-	if err == nil {
-		return fn, fmt.Errorf("%s exists", fn)
-	}
-	if !os.IsNotExist(err) {
-		return fn, err
-	}
-
+func CreateUser(fn string, p Profile) (string, error) {
 	b, _ := json.MarshalIndent(p, "", "  ")
 	return fn, ioutil.WriteFile(fn, b, 0644)
 }

@@ -1,6 +1,7 @@
 package storage
 
 import (
+	"os"
 	"testing"
 )
 
@@ -12,6 +13,7 @@ func TestCreateUser(t *testing.T) {
 	}{
 		{
 			name: "asd_qwe",
+			file: "asd_qwe.json",
 			profile: Profile{
 				FirstName: "asd",
 				LastName:  "qwe",
@@ -27,5 +29,12 @@ func TestCreateUser(t *testing.T) {
 				t.Error(err)
 			}
 		})
+	}
+	// cleanup so tests are idempotent
+	for _, tt := range tests {
+		err := os.Remove(tt.file)
+		if err != nil {
+			t.Fatal(err)
+		}
 	}
 }

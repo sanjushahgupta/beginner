@@ -18,5 +18,5 @@ func CreateUser(p storage.Profile) (string, error) {
 		return fn, err
 	}
 
-	return storage.CreateUser(fn, p)
+	return fn, storage.CreateUser(fn, p)
 }

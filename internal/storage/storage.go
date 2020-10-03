@@ -11,7 +11,8 @@ type Profile struct {
 	Email     string `json:"email"`
 }
 
-func CreateUser(fn string, p Profile) (string, error) {
+// CreateUser writes Profile to given filename
+func CreateUser(fn string, p Profile) error {
 	b, _ := json.MarshalIndent(p, "", "  ")
-	return fn, ioutil.WriteFile(fn, b, 0644)
+	return ioutil.WriteFile(fn, b, 0644)
 }

@@ -7,6 +7,7 @@ import (
 	"github.com/sanjushahgupta/beginner/internal/storage"
 )
 
+// CreateUser returns error if Profile is already created
 func CreateUser(p storage.Profile) (string, error) {
 	fn := fmt.Sprintf("%s_%s.json", p.FirstName, p.LastName)
 	_, err := os.Stat(fn)

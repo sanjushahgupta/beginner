@@ -11,6 +11,7 @@ import (
 	"github.com/sanjushahgupta/beginner/internal/storage"
 )
 
+// CreateUser handles request to /user endpoint
 func CreateUser(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	defer r.Body.Close()
 	b, _ := ioutil.ReadAll(r.Body)
